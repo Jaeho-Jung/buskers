@@ -10,16 +10,16 @@ public class PostsUpdateRequestDto {
 
     private String title;
     private String content;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
     private String address;
 
     @Builder
-    public PostsUpdateRequestDto(String title, String content, LocalDateTime startTime, LocalDateTime endTime, String address) {
+    public PostsUpdateRequestDto(String title, String content, LocalDateTime startDateTime, LocalDateTime endDateTime, String address) {
         this.title = title;
         this.content = content;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
         this.address = address;
     }
 }

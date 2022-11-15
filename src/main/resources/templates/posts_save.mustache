@@ -15,15 +15,16 @@
             </div>
             <div class="form-group">
                 <label for="address">장소</label>
-                <input type="text" class="form-control" id="address" placeholder="주소를 입력하세요">
+                <input type="text" class="form-control" id="address" placeholder="주소를 입력하세요" readonly>
+                <input type="button" id="btn-address-search" value="주소 검색"><br>
             </div>
             <div class="form-group">
-                <label for="startTime">시작 시간</label>
-                <input type="datetime-local" class="form-control" id="startTime">
+                <label for="startDateTime">시작 시간</label>
+                <input type="datetime-local" class="form-control" id="startDateTime">
             </div>
             <div class="form-group">
-                <label for="endTime">종료 시간</label>
-                <input type="datetime-local" class="form-control" id="endTime">
+                <label for="endDateTime">종료 시간</label>
+                <input type="datetime-local" class="form-control" id="endDateTime">
             </div>
             <div class="form-group">
                 <label for="author">내용</label>
@@ -35,5 +36,5 @@
     </div>
 </div>
 
-
-{{>layout/footer}}
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="module" src="/js/app/posts_save.js"></script>

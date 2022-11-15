@@ -17,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -47,15 +46,15 @@ public class PostsAipControllerTest {
         String title = "title";
         String content = "content";
         String address = "address";
-        LocalDateTime startTime = LocalDateTime.of(2022, 11, 27, 15, 0);
-        LocalDateTime endTime = LocalDateTime.of(2022, 11, 27, 16, 0);
+        LocalDateTime startDateTime = LocalDateTime.of(2022, 11, 27, 15, 0);
+        LocalDateTime endDateTime = LocalDateTime.of(2022, 11, 27, 16, 0);
 
         PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
                 .title(title)
                 .content(content)
                 .address(address)
-                .startTime(startTime)
-                .endTime(endTime)
+                .startDateTime(startDateTime)
+                .endDateTime(endDateTime)
                 .author("author").build();
 
         String url = "http://localhost:" + port + "/api/v1/posts";
@@ -70,8 +69,8 @@ public class PostsAipControllerTest {
         List<Posts> all = postsRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(title);
         assertThat(all.get(0).getContent()).isEqualTo(content);
-        assertThat(all.get(0).getStartTime()).isEqualTo(startTime);
-        assertThat(all.get(0).getEndTime()).isEqualTo(endTime);
+        assertThat(all.get(0).getStartDateTime()).isEqualTo(startDateTime);
+        assertThat(all.get(0).getEndDateTime()).isEqualTo(endDateTime);
         assertThat(all.get(0).getAddress()).isEqualTo(address);
         assertThat(all.get(0).getAuthor()).isEqualTo("author");
 
@@ -83,8 +82,8 @@ public class PostsAipControllerTest {
         Posts savedPost = postsRepository.save(Posts.builder()
                         .title("title")
                         .author("author")
-                        .startTime(LocalDateTime.of(2022, 11, 27, 15, 0))
-                        .endTime(LocalDateTime.of(2022, 11, 27, 16, 0))
+                        .startDateTime(LocalDateTime.of(2022, 11, 27, 15, 0))
+                        .endDateTime(LocalDateTime.of(2022, 11, 27, 16, 0))
                         .address("address")
                         .content("content")
                         .build());
@@ -93,13 +92,13 @@ public class PostsAipControllerTest {
         String expectedTitle = "title2";
         String expectedAddress = "address2";
         String expectedContent = "content2";
-        LocalDateTime expectedStartTime = LocalDateTime.of(2022,12,27,15,0);
-        LocalDateTime expectedEndTime = LocalDateTime.of(2022,12,27,16,0);
+        LocalDateTime expectedStartDateTime = LocalDateTime.of(2022,12,27,15,0);
+        LocalDateTime expectedEndDateTime = LocalDateTime.of(2022,12,27,16,0);
 
         PostsUpdateRequestDto requestDto = PostsUpdateRequestDto.builder()
                 .title(expectedTitle)
-                .startTime(expectedStartTime)
-                .endTime(expectedEndTime)
+                .startDateTime(expectedStartDateTime)
+                .endDateTime(expectedEndDateTime)
                 .content(expectedContent)
                 .address(expectedAddress)
                 .build();
@@ -117,8 +116,8 @@ public class PostsAipControllerTest {
 
         List<Posts> all = postsRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
-        assertThat(all.get(0).getStartTime()).isEqualTo(expectedStartTime);
-        assertThat(all.get(0).getEndTime()).isEqualTo(expectedEndTime);
+        assertThat(all.get(0).getStartDateTime()).isEqualTo(expectedStartDateTime);
+        assertThat(all.get(0).getEndDateTime()).isEqualTo(expectedEndDateTime);
         assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
         assertThat(all.get(0).getAddress()).isEqualTo(expectedAddress);
     }

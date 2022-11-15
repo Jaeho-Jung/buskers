@@ -2,6 +2,7 @@ package com.jaeho.buskers.service.posts;
 
 import com.jaeho.buskers.domain.posts.Posts;
 import com.jaeho.buskers.domain.posts.PostsRepository;
+import com.jaeho.buskers.web.dto.PostsListResponseDto;
 import com.jaeho.buskers.web.dto.PostsResponseDto;
 import com.jaeho.buskers.web.dto.PostsSaveRequestDto;
 import com.jaeho.buskers.web.dto.PostsUpdateRequestDto;
@@ -27,9 +28,24 @@ public class PostsService {
         Posts posts = postsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
-        posts.update(requestDto.getTitle(), requestDto.getStartTime(), requestDto.getEndTime(), requestDto.getAddress(), requestDto.getContent());
+        posts.update(requestDto.getTitle(), requestDto.getStartDateTime(), requestDto.getEndDateTime(), requestDto.getAddress(), requestDto.getContent());
 
         return id;
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 업습니다. id=" + id));
+
+        postsRepository.delete(posts);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
     }
 
     public PostsResponseDto findById(Long id) {
@@ -38,5 +54,4 @@ public class PostsService {
 
         return new PostsResponseDto(entity);
     }
-
 }

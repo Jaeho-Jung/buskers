@@ -29,16 +29,16 @@ public class PostsRepositoryTest {
         // given
         String title = "title";
         String author = "author";
-        LocalDateTime startTime = LocalDateTime.of(2022, 11, 27, 15, 0);
-        LocalDateTime endTime = LocalDateTime.of(2022, 11, 27, 16, 0);
+        LocalDateTime startDateTime = LocalDateTime.of(2022, 11, 27, 15, 0);
+        LocalDateTime endDateTime = LocalDateTime.of(2022, 11, 27, 16, 0);
         String address = "address";
         String content = "content";
 
         postsRepository.save(Posts.builder()
                         .title(title)
                         .author(author)
-                        .startTime(startTime)
-                        .endTime(endTime)
+                        .startDateTime(startDateTime)
+                        .endDateTime(endDateTime)
                         .address(address)
                         .content(content)
                         .build());
@@ -50,8 +50,8 @@ public class PostsRepositoryTest {
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getAuthor()).isEqualTo(author);
-        assertThat(posts.getStartTime()).isEqualTo(startTime);
-        assertThat(posts.getEndTime()).isEqualTo(endTime);
+        assertThat(posts.getStartDateTime()).isEqualTo(startDateTime);
+        assertThat(posts.getEndDateTime()).isEqualTo(endDateTime);
         assertThat(posts.getAddress()).isEqualTo(address);
         assertThat(posts.getContent()).isEqualTo(content);
     }
